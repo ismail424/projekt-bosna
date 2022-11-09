@@ -1,17 +1,35 @@
 <script>
     import ProgressBar from 'progressbar.js';
+    import PocketBase from 'pocketbase';
     import { onMount } from 'svelte';
+    const client = new PocketBase('https://pb.sacic.dev');
 
     let goal = 250_000;
-    let raised = 51_312;
-    let raised_percent = (raised / goal);
+    let raised = 0;
     
     let progressbar = null;
     let progressbar_text_span = document.createElement('span');
     progressbar_text_span.innerText = ` kr `;
     progressbar_text_span.className = 'goal-text';
 
+    const get_total_raised = async () => {
+        try {
+            const total_sum = await client.records.getFullList('projekt_bosna', 200 );
+            raised = 0;
+            await total_sum.forEach((item) => {
+                raised += item.belopp;
+            });
+            return raised;
+        } catch (e) {
+            console.log(e);
+            return 0;
+        }
+    }
+
     onMount(async () => {
+        raised = await get_total_raised(); 
+        console.log(raised);  
+        let raised_percent = (raised / goal);
 
         progressbar = new ProgressBar.Line('#progress', {
             color: '#eee',

@@ -83,9 +83,6 @@
         try {
             await refresh_donations();
 
-                // Get the total amount raised
-            raised = await get_total_raised();      
-
             progressbar = new ProgressBar.Circle('#progress', {
                 color: '#fff',
                 trailColor: '#eee',
