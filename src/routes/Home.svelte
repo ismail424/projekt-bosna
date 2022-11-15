@@ -1,15 +1,15 @@
 <script>
     import Status from "../components/Status.svelte";
+    import { t } from "../i18n";
+
 </script>
 <div class="container">
     <div class="backbround"></div>
     <div class="content">
-        <h1>Projekat Bosna 🇧🇦</h1>
-        <p class="info">
-            Mi, Bemuf Göteborg, zajedno sa Islamic Reliefom i Islamskom zajednicom Bosnjaka Göteborg pokrenuli smo projekat u Bosni i Hercegovini čiji je cilj renoviranje sirotišta ”JU DOM-porodica” u Zenici. 
-        </p>
+        <h1>{$t("homepage.title")}</h1>
+        <p class="info">{$t('homepage.text')}</p>
         <Status />
-        <a href="/info">Više informacije </a>
+        <a href="/info">{$t('homepage.btn')}</a>
         <div class="sponsor">
             <img src="/imgs/bemuf_lgo.png" alt="Sponsor">
             <img src="/imgs/islamic_relief.jpg" alt="Sponsor">

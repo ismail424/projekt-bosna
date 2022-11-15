@@ -1,10 +1,11 @@
 <script>
+        import { t } from "../i18n";
     import ProgressBar from 'progressbar.js';
     import PocketBase from 'pocketbase';
     import { onMount } from 'svelte';
     const client = new PocketBase('https://pb.sacic.dev');
 
-    let goal = 250_000;
+    let goal = 500_000;
     let raised = 0;
     
     let progressbar = null;
@@ -55,11 +56,11 @@
 </script>
 <div class="whole_progress">
     <div class="whole_text">
-        Koliko smo dosada skupili para 💰
+        {$t('status.text')}
     </div>
     <p>
         <span>0 kr</span>
-        <span>Cilj {goal.toLocaleString('fr-FR')} kr</span>
+        <span>{$t('status.goal')} {goal.toLocaleString('fr-FR')} kr</span>
     </p>
     <div id="progress"></div>
 </div>
